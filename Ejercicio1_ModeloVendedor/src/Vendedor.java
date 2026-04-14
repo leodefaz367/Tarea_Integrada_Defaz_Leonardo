@@ -61,7 +61,7 @@ public class Vendedor {
 
     public double calcularComision(double montoVendido, int porcentajeComision){
         double comision;
-        comision=montoVendido*(porcentajeComision/100);
+        comision=montoVendido*(porcentajeComision/100.0);
         return comision;
     }
 
