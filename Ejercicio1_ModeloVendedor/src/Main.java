@@ -12,7 +12,7 @@ public class Main {
         Vendedor v1= new Vendedor(vendedor, area);
         v1.setMontoVendido(2000);
         v1.setPorcentajeComision(8);
-        v1.setCumplimimentoMeta(95);
+        v1.setCumplimimentoMeta(13);
         double comision=v1.calcularComision(v1.getMontoVendido(),v1.getPorcentajeComision());
         v1.calcularIngresoTotal(v1.getMontoVendido(),comision);
         String estado=v1.obtenerEstadoCumplimiento(v1.getCumplimimentoMeta());
