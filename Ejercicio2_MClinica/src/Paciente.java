@@ -101,6 +101,10 @@ public class Paciente {
         double costoFinal= costoT*(porcentaje/100.00);
         return costoFinal;
     }
+    public double Total(double costo1, double descuento1){
+        double total = costo1-descuento1;
+        return total;
+    }
 
     public String prioridad(int nivelp){
         if (nivelp==1){
@@ -122,6 +126,30 @@ public class Paciente {
         if (prioridad.equals("Prioridad baja")){
             System.out.println("Control regular");
         }
+    }
+    public void mostrarReporteCompleto() {
+        System.out.println("=== REPORTE DEL PACIENTE ===");
+
+        System.out.println("Nombre: " + nombre);
+        System.out.println("ID: " + ID);
+        System.out.println("Seguro: " + tipoSeguro);
+        System.out.println("Edad: " + edad);
+
+        double costoT = costoTotal(costo, numeroC);
+        int porcentaje = transformacion(tipoSeguro);
+        double descuentoValor = descuento(costoT, porcentaje);
+        double totalPagar = Total(costoT, descuentoValor);
+
+        System.out.println("Costo total: " + costoT);
+        System.out.println("Descuento: " + descuentoValor);
+        System.out.println("Total a pagar: " + totalPagar);
+
+        String clasificacion = prioridad(nivelPrioridad);
+
+        System.out.println("Nivel de prioridad: " + nivelPrioridad);
+        System.out.println("Clasificación: " + clasificacion);
+        System.out.print("Mensaje: ");
+        mensajeAtencion(clasificacion);
     }
 
 
