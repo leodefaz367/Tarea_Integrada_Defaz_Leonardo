@@ -6,13 +6,13 @@ public class Vendedor {
     private int cumplimimentoMeta;
 
     public Vendedor(String vendedor, String area){
-        if (vendedor=null||vendedor.isBlank()){
+        if (vendedor==null||vendedor.isBlank()){
             System.out.println("Error, no se permite campos vacios");
         }
         else {
             this.vendedor=vendedor;
         }
-        if (area=null||area.isBlank()){
+        if (area==null||area.isBlank()){
             System.out.println("Error, no se permite campos vacios");
         }
         else {
@@ -30,14 +30,22 @@ public class Vendedor {
     }
 
     public void setPorcentajeComision(int porcentajeComision) {
-        this.porcentajeComision = porcentajeComision;
+        if (porcentajeComision>=0){
+            this.porcentajeComision = porcentajeComision;
+        }
+        else {
+            System.out.println("Error... el porcentaje de comision no puede ser negativo");
+        }
     }
 
     public void setCumplimimentoMeta(int cumplimimentoMeta) {
-        this.cumplimimentoMeta = cumplimimentoMeta;
+        if (cumplimimentoMeta>=0&&cumplimimentoMeta<100){
+            this.cumplimimentoMeta = cumplimimentoMeta;
+        }
+        else {
+            System.out.println("Error... No se permiten valores negaivos ni mayores a 100");
+        }
     }
-
-
 
     public double getMontoVendido() {
         return montoVendido;
@@ -51,8 +59,42 @@ public class Vendedor {
         return cumplimimentoMeta;
     }
 
+    public double calcularComision(double montoVendido, int porcentajeComision){
+        double comision;
+        comision=montoVendido*(porcentajeComision/100);
+        return comision;
+    }
 
+    public void calcularIngresoTotal(double montoVendido, double comision){
+        double ingresoT= montoVendido+comision;
+        System.out.println("EL ingreso total fue de: "+ ingresoT);
+    }
 
+    public String obtenerEstadoCumplimiento(int cumplimimentoMeta){
+        if (cumplimimentoMeta>=90){
+            return "Excelente";
+        }
+
+        else if (cumplimimentoMeta>=70&&cumplimimentoMeta<90) {
+            return "Aceptable";
+        }
+        else {
+            return "Bajo";
+        }
+    }
+
+    public void obtenerMensajeDesempeno(String estado){
+        if (estado.equals("Excelente")) {
+            System.out.println("Vendedor con desempeño sobresaliente");
+        }
+         else if (estado.equals("Aceptable")){
+             System.out.println("Vendedor con desempeño aceptable");
+        }
+        else{
+            System.out.println("Se requiere seguimiento comercial");
+        }
+
+    }
 
 
 }
